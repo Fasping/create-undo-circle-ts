@@ -13,7 +13,7 @@ Typescript, React, Javascript, HTML, CSS...
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/Fasping/create-undo-circle-ts.git
 ```
 
 Go to the project directory
