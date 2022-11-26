@@ -27,7 +27,6 @@ function App() {
           top: point.y - 5 + "px",
         }}
         >
-          o
         </div>
       ))}
     </div>
