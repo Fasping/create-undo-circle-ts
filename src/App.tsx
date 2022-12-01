@@ -8,6 +8,8 @@ type TPoint = {
 
 function App() {
   const [points, setPoint] = useState<TPoint[]>([]);
+  const [popped, setPopped] = useState<TPoint[]>([]);
+
 
   function handlePlaceCircle(e: React.MouseEvent<HTMLDivElement>) {
     const { clientX, clientY } = e;
@@ -21,15 +23,25 @@ function App() {
   }
 
   function handleUndo() {
-    //TODO remove the last point add in the array
     const newPoints = [...points];
-    newPoints.pop();
+    const poppedPoint = newPoints.pop();
+    if (!poppedPoint) return;
+    setPopped([...popped, poppedPoint]);
     setPoint(newPoints);
+  }
+
+  function handleRedo() {
+    const newPopped = [...popped];
+    const poppedPoint = newPopped.pop();
+    if (!poppedPoint) return;
+    setPoint([...points, poppedPoint]);
+    setPopped(newPopped);
   }
 
   return (
     <div>
       <button onClick={handleUndo}>Undo</button>
+      <button onClick={handleRedo}>Redo</button>
       <div className="App" onClick={handlePlaceCircle}>
         {points.map((point) => (
           <div
